@@ -16,6 +16,11 @@
 
     <properties>
         <java.version>1.8</java.version>
+        <!--仓库地址-->
+        <docker.repostory>registry.cn-hangzhou.aliyuncs.com</docker.repostory>
+        <!--命名空间-->
+        <docker.registry.name>wang_xing_namespace</docker.registry.name>
+        <docker.image.prefix>jenkins</docker.image.prefix>
     </properties>
 
     <dependencies>
@@ -41,22 +46,13 @@
 
             <plugin>
                 <groupId>com.spotify</groupId>
-                <artifactId>docker-maven-plugin</artifactId>
-                <version>1.0.0</version>
+                <artifactId>dockerfile-maven-plugin</artifactId>
+                <version>1.4.0</version>
                 <configuration>
-                    <serverId>docker-aliyun</serverId>
-                    <registryUrl>registry.cn-hangzhou.aliyuncs.com/wang_xing_namespace/wang_xing_store</registryUrl>
-
-                    <imageName>registry.cn-hangzhou.aliyuncs.com/wang_xing_namespace/wang_xing_store/jenkins-example</imageName>
-                    <dockerDirectory>${basedir}/docker</dockerDirectory> <!-- 指定 Dockerfile 路径-->
-                    <!-- 这里是复制 jar 包到 docker 容器指定目录配置，也可以写到 Docokerfile 中 -->
-                    <resources>
-                        <resource>
-                            <targetPath>/ROOT</targetPath>
-                            <directory>${project.build.directory}</directory>
-                            <include>${project.build.finalName}.jar</include>
-                        </resource>
-                    </resources>
+                    <repository>${docker.image.prefix}/${project.artifactId}</repository>
+                    <buildArgs>
+                        <JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
+                    </buildArgs>
                 </configuration>
             </plugin>
         </plugins>
