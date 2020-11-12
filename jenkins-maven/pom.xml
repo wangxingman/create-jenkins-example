@@ -44,7 +44,10 @@
                 <artifactId>docker-maven-plugin</artifactId>
                 <version>1.0.0</version>
                 <configuration>
-                    <imageName>jenkins-example</imageName>
+                    <serverId>docker-aliyun</serverId>
+                    <registryUrl>registry.cn-hangzhou.aliyuncs.com/wang_xing_namespace/wang_xing_store</registryUrl>
+
+                    <imageName>registry.cn-hangzhou.aliyuncs.com/wang_xing_namespace/wang_xing_store/jenkins-example</imageName>
                     <dockerDirectory>${basedir}/docker</dockerDirectory> <!-- 指定 Dockerfile 路径-->
                     <!-- 这里是复制 jar 包到 docker 容器指定目录配置，也可以写到 Docokerfile 中 -->
                     <resources>
