@@ -14,7 +14,7 @@ public class JenkinsMavenApplication {
     }
     @GetMapping("/")
     public String  createExample() {
-        return   "测试数据";
+        return   "完成初步测试";
     }
 
 }
