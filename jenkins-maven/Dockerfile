@@ -9,4 +9,4 @@ VOLUME /tmp
 # 将jar包添加到容器中并更名为app.jar
 ADD target/${JAR_FILE} app.jar
 EXPOSE 9998
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/eladmin.jar"]
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
