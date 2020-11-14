@@ -5,8 +5,8 @@
 FROM java:8
 ENV LANG C.UTF-8
 RUN echo "Asia/shanghai" > /etc/timezone;
+VOLUME /tmp
 # 将jar包添加到容器中并更名为app.jar
-ADD target/${JAR_FILE} /app.jar
-# 运行jar包
-RUN bash -c 'touch /app.jar'
-ENTRYPOINT ["java","-jar","/app.jar"]
+ADD target/${JAR_FILE} app.jar
+EXPOSE 9998
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/eladmin.jar"]
